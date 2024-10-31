@@ -10,22 +10,19 @@ declare global {
   }
 }
 
-export const taskExists = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const taskExists = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { taskId } = req.params;
     const task = await Task.findById(taskId);
     if (!task) {
+      console.log('entro aca no encontro tarea')
       res.status(404).json({ error: "Tarea no encontrada" });
       return;
     }
     req.task = task;
     next();
   } catch (error) {
-    res.status(500).json({ error: "Error en el servidor" });
+    res.status(400).json({ error: "No se pudo encontrar la tarea" });
   }
 };
 
