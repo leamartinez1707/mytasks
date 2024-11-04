@@ -20,8 +20,16 @@ router.post("/register",
     handleInputErrors,
     AuthController.createAccount);
 
-router.post("/login", async (req, res) => {
-    // code for register
-});
+router.post("/confirm-account",
+    body('token').notEmpty().withMessage('El token no puede estar vacío'),
+    handleInputErrors,
+    AuthController.confirmAccount
+);
+router.post("/login",
+    body('email').isEmail().withMessage('E-mail no válido'),
+    body('password').notEmpty().withMessage('La contraseña no puede estar vacía'),
+    handleInputErrors,
+    AuthController.login
+);
 
 export default router;
