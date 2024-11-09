@@ -91,4 +91,65 @@ export class AuthController {
             res.status(500).json({ error: "Error en el servidor" });
         }
     }
+
+    static requestConfirmationCode = async (req: Request, res: Response) => {
+
+        try {
+            const { email } = req.body;
+
+            // Verificar si el email ya existe
+            const user = await Auth.findOne({ email });
+            if (!user) {
+                res.status(409).json({ error: "El usuario no está registrado" });
+                return;
+            }
+            if (user.confirmed) {
+                res.status(403).json({ error: "El usuario ya está confirmado" });
+                return;
+            }
+            // Generar el token
+            const token = new Token();
+            token.token = generateToken();
+            token.user = user.id;
+
+            // Enviar email de confirmación
+            await AuthEmail.sendConfirmationEmail({ email: user.email, name: user.name, token: token.token });
+
+            await Promise.allSettled([user.save(), token.save()]);
+
+            res.send("Se ha enviado un nuevo token a tu email.");
+        } catch (error) {
+            res.status(500).json({ error: "Error en el servidor" });
+        }
+    }
+    static requestNewPassword = async (req: Request, res: Response) => {
+
+        try {
+            const { email } = req.body;
+
+            // Verificar si el email ya existe
+            const user = await Auth.findOne({ email });
+            if (!user) {
+                res.status(409).json({ error: "El usuario no está registrado" });
+                return;
+            }
+            if (user.confirmed) {
+                res.status(403).json({ error: "El usuario ya está confirmado" });
+                return;
+            }
+            // Generar el token
+            const token = new Token();
+            token.token = generateToken();
+            token.user = user.id;
+
+            await token.save()
+
+            // Enviar email de confirmación
+            await AuthEmail.sendPasswordResetToken({ email: user.email, name: user.name, token: token.token });
+
+            res.send("Se ha enviado un email para restablecer tu contraseña.");
+        } catch (error) {
+            res.status(500).json({ error: "Error en el servidor" });
+        }
+    }
 }

@@ -31,5 +31,15 @@ router.post("/login",
     handleInputErrors,
     AuthController.login
 );
+router.post("/request-code",
+    body('email').isEmail().withMessage('E-mail no válido'),
+    handleInputErrors,
+    AuthController.requestConfirmationCode
+);
+router.post("/forgot-password",
+    body('email').isEmail().withMessage('E-mail no válido'),
+    handleInputErrors,
+    AuthController.requestNewPassword
+);
 
 export default router;
