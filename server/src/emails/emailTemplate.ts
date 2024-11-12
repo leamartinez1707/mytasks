@@ -167,7 +167,7 @@ export const resetPasswordEmailTemplate = (user: IEmail) => {
           <p>Hola <b>${user.name}</b>,</p>
           <p>Has solicitado reestablecer tu contraseña.</p>
           <p>Para reestablecer tu cuenta, haz clic en el siguiente enlace:</p>
-          <a href="${process.env.FRONTEND_URL}/auth/forgot-password">Reestablecer Contraseña</a>
+          <a href="${process.env.FRONTEND_URL}/auth/new-password">Reestablecer Contraseña</a>
           <p class="code">Código: ${user.token}</p>
           <p>Este código expira en 10 minutos.</p>
           <div class="footer">

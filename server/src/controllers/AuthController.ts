@@ -80,13 +80,15 @@ export class AuthController {
                 res.status(401).json({ error: "La cuenta no ha sido confirmada, te reenviamos un nuevo código de confirmación. Verifica tu email." });
                 return;
             }
-            // Verificar la contraseña
+            // Verificar que la contraseña sea correcta
             const isValidPassword = await comparePassword(password, user.password);
             if (!isValidPassword) {
                 res.status(401).json({ error: "Contraseña incorrecta" });
                 return;
             }
-            res.send('Autenticado correctamente');
+
+            const token = generateToken();
+            res.send(token);
         } catch (error) {
             res.status(500).json({ error: "Error en el servidor" });
         }
@@ -133,10 +135,6 @@ export class AuthController {
                 res.status(409).json({ error: "El usuario no está registrado" });
                 return;
             }
-            if (user.confirmed) {
-                res.status(403).json({ error: "El usuario ya está confirmado" });
-                return;
-            }
             // Generar el token
             const token = new Token();
             token.token = generateToken();
@@ -148,6 +146,43 @@ export class AuthController {
             await AuthEmail.sendPasswordResetToken({ email: user.email, name: user.name, token: token.token });
 
             res.send("Se ha enviado un email para restablecer tu contraseña.");
+        } catch (error) {
+            res.status(500).json({ error: "Error en el servidor" });
+        }
+    }
+
+    static validateToken = async (req: Request, res: Response) => {
+        try {
+            const { token } = req.body;
+
+            const tokenExists = await Token.findOne({ token });
+            if (!tokenExists) {
+                res.status(401).json({ error: "Token inválido" });
+                return;
+            }
+
+            res.send("Token válido, define tu nueva contraseña");
+        } catch (error) {
+            res.status(500).json({ error: "Error en el servidor" });
+        }
+    }
+    static updatePasswordWithToken = async (req: Request, res: Response) => {
+        try {
+            const { token } = req.params
+            const { password } = req.body;
+
+            const tokenExists = await Token.findOne({ token });
+            if (!tokenExists) {
+                res.status(401).json({ error: "Token inválido" });
+                return;
+            }
+
+            const user = await Auth.findById(tokenExists.user);
+            // Hashear la contraseña
+            user.password = await hashPassword(password);
+            await Promise.allSettled([user.save(), tokenExists.deleteOne()]);
+
+            res.send("La contraseña ha sido actualizada correctamente");
         } catch (error) {
             res.status(500).json({ error: "Error en el servidor" });
         }
