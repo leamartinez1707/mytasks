@@ -18,7 +18,11 @@ export class ProjectController {
 
   static getAllProjects = async (req: Request, res: Response) => {
     try {
-      const projects = await Project.find({});
+      const projects = await Project.find({
+        $or: [
+          { manager: { $in: req.user.id } }
+        ]
+      });
       res.json(projects);
     } catch (error) {
       res.status(500).json({ error: "Error en el servidor" });
@@ -35,6 +39,10 @@ export class ProjectController {
         return;
       }
 
+      if (project.manager.toString() !== req.user.id) {
+        res.status(403).json({ error: "No tienes permisos para acceder a este proyecto" });
+        return;
+      }
       res.json(project); // Enviar la respuesta pero no devolverla
     } catch (error) {
       res.status(500).json({ error: "Error en el servidor" });
@@ -47,6 +55,10 @@ export class ProjectController {
       const project = await Project.findById(id);
       if (!project) {
         res.status(404).json({ error: "No se encontró el proyecto" });
+      }
+      if (project.manager.toString() !== req.user.id) {
+        res.status(403).json({ error: "Solo el manager puede modificar este proyecto" });
+        return;
       }
       project.clientName = req.body.clientName;
       project.projectName = req.body.projectName;
@@ -62,11 +74,15 @@ export class ProjectController {
   static deleteProject = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-      const founded = await Project.findById(id);
-      if (!founded) {
+      const project = await Project.findById(id);
+      if (!project) {
         res.status(404).json({ error: "No se encontró el proyecto" });
       }
-      await founded.deleteOne();
+      if (project.manager.toString() !== req.user.id) {
+        res.status(403).json({ error: "No tienes permisos para borrar este proyecto" });
+        return;
+      }
+      await project.deleteOne();
 
       res.send("Proyecto eliminado correctamente"); // Enviar la respuesta pero no devolverla
     } catch (error) {

@@ -8,10 +8,10 @@ import { taskBelongsToProject, taskExists } from "../middleware/task";
 import { authenticate } from "../middleware/auth";
 
 const router = Router();
+router.use(authenticate);
 
 router.post(
   "/",
-  authenticate,
   body("projectName")
     .notEmpty()
     .withMessage("El nombre del proyecto es requerido"),
@@ -25,7 +25,7 @@ router.post(
   ProjectController.createProject
 );
 
-router.get("/", ProjectController.getAllProjects);
+router.get("/", authenticate, ProjectController.getAllProjects);
 
 router.get(
   "/:id",

@@ -5,7 +5,7 @@ import Types from 'mongoose'
 type UserPayload = {
     id: Types.ObjectId;
 }
-export const generateToken = (payload: UserPayload) => {
+export const generateAuthToken = (payload: UserPayload) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: '180d',
     });

@@ -4,6 +4,7 @@ import Auth from "../models/Auth";
 import Token from "../models/Token";
 import { generateToken } from "../utils/token";
 import { AuthEmail } from "../emails/AuthEmail";
+import { generateAuthToken } from "../utils/jwt";
 
 export class AuthController {
     static createAccount = async (req: Request, res: Response) => {
@@ -87,7 +88,7 @@ export class AuthController {
                 return;
             }
 
-            const token = generateToken();
+            const token = generateAuthToken({ id: user.id });
             res.send(token);
         } catch (error) {
             res.status(500).json({ error: "Error en el servidor" });
@@ -186,5 +187,9 @@ export class AuthController {
         } catch (error) {
             res.status(500).json({ error: "Error en el servidor" });
         }
+    }
+    static userData = async (req: Request, res: Response) => {
+        res.json(req.user);
+        return;
     }
 }
