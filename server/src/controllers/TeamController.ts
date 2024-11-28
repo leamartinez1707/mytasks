@@ -32,13 +32,13 @@ export class TeamMemberControler {
     }
 
     static deleteMemberById = async (req: Request, res: Response) => {
-        const { id } = req.body
+        const { userId } = req.params
 
-        if (!req.project.team.some(team => team.toString() === id)) {
+        if (!req.project.team.some(team => team.toString() === userId)) {
             res.status(409).json({ error: 'El usuario no existe en el proyecto' })
             return
         }
-        req.project.team = req.project.team.filter(teamMember => teamMember.toString() !== id)
+        req.project.team = req.project.team.filter(teamMember => teamMember.toString() !== userId)
 
         await req.project.save()
         res.send('Miembro eliminado correctamente')

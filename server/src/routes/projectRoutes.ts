@@ -115,15 +115,15 @@ router.post('/:projectId/team/find',
   handleInputErrors,
   TeamMemberControler.findMemberByEmail);
 
-router.post('/:projectId/team', TeamMemberControler.getProjectTeam
+router.get('/:projectId/team', TeamMemberControler.getProjectTeam
 )
 router.post('/:projectId/team',
   body('id').isMongoId().withMessage('El id del usuario no es válido'),
   handleInputErrors,
   TeamMemberControler.addMemberById);
 
-router.delete('/:projectId/team',
-  body('id').isMongoId().withMessage('El id del usuario no es válido'),
+router.delete('/:projectId/team/:userId',
+  param('userId').isMongoId().withMessage('El id del usuario no es válido'),
   handleInputErrors,
   TeamMemberControler.deleteMemberById);
 
