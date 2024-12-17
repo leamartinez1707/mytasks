@@ -39,3 +39,17 @@ export const taskBelongsToProject = (
   }
   next();
 };
+
+export const hasAuthorization = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.user.id.toString() !== req.project.manager.toString()) {
+    res
+      .status(400)
+      .json({ error: "No tienes permiso para acceder a esta tarea" });
+    return;
+  }
+  next();
+};

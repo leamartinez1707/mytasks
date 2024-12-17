@@ -4,15 +4,15 @@ import { ProjectController } from "../controllers/ProjectController";
 import { handleInputErrors } from "../middleware/validation";
 import { TaskController } from "../controllers/TaskController";
 import { projectExists } from "../middleware/project";
-import { taskBelongsToProject, taskExists } from "../middleware/task";
+import { hasAuthorization, taskBelongsToProject, taskExists } from "../middleware/task";
 import { authenticate } from "../middleware/auth";
 import { TeamMemberControler } from "../controllers/TeamController";
 
 const router = Router();
 router.use(authenticate);
 
-router.post(
-  "/",
+router.post("/",
+  hasAuthorization,
   body("projectName")
     .notEmpty()
     .withMessage("El nombre del proyecto es requerido"),
@@ -84,6 +84,7 @@ router.get(
 
 router.put(
   "/:projectId/tasks/:taskId",
+  hasAuthorization,
   param("taskId").isMongoId().withMessage("El id de la tarea no es válida"),
   body("name").notEmpty().withMessage("El nombre de la tarea es requerida"),
   body("description")
@@ -95,6 +96,7 @@ router.put(
 
 router.delete(
   "/:projectId/tasks/:taskId",
+  hasAuthorization,
   param("taskId").isMongoId().withMessage("El id del proyecto no es válido"),
   handleInputErrors,
   TaskController.deleteTask
