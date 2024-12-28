@@ -22,7 +22,7 @@ const NoteSchema: Schema = new Schema({
         required: true,
         ref: 'Task'
     }
-});
+}, { timestamps: true });
 
 const Note = mongoose.model<INote>('Note', NoteSchema);
 
