@@ -36,8 +36,11 @@ router.get(
   ProjectController.getProjectWithId
 );
 
+router.param("projectId", projectExists);
+
 router.put(
-  "/:id",
+  "/:projectId",
+  param('projectId').isMongoId().withMessage('El id del proyecto no es válido'),
   body("projectName")
     .notEmpty()
     .withMessage("El nombre del proyecto es requerido"),
@@ -48,18 +51,20 @@ router.put(
     .notEmpty()
     .withMessage("La descripción del proyecto es requerida"),
   handleInputErrors,
+  hasAuthorization,
   ProjectController.updateProject
 );
 
 router.delete(
-  "/:id",
-  param("id").isMongoId().withMessage("El id del proyecto no es válido"),
+  "/:projectId",
+  param("projectId").isMongoId().withMessage("El id del proyecto no es válido"),
   handleInputErrors,
+  hasAuthorization,
   ProjectController.deleteProject
 );
 
 // Rutas para las tareas
-router.param("projectId", projectExists);
+
 // Cada vez que se haga una peticion con el parametro projectId, se va a ejecutar la funcion validateProjectExists
 router.param("taskId", taskExists);
 router.param("taskId", taskBelongsToProject);

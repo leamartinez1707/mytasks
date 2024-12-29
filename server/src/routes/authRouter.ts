@@ -64,4 +64,10 @@ router.get('/user',
     authenticate,
     AuthController.userData)
 
+router.post('/check-password',
+    authenticate,
+    body('password').notEmpty().withMessage('La contraseña no puede estar vacía'),
+    handleInputErrors,
+    AuthController.checkPassword
+)
 export default router;

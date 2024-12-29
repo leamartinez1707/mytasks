@@ -192,4 +192,19 @@ export class AuthController {
         res.json(req.user);
         return;
     }
+
+    static checkPassword = async (req: Request, res: Response) => {
+        const { password } = req.body;
+
+        const user = await Auth.findById(req.user.id);
+
+        const isPasswordValid = await comparePassword(password, user.password);
+        if (!isPasswordValid) {
+            res.status(401).json({ error: 'La contraseña no es correcta' });
+            return;
+        }
+
+        res.send('Contraseña correcta');
+
+    }
 }
