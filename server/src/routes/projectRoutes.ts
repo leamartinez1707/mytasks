@@ -13,7 +13,7 @@ const router = Router();
 router.use(authenticate);
 
 router.post("/",
-  hasAuthorization,
+  authenticate,
   body("projectName")
     .notEmpty()
     .withMessage("El nombre del proyecto es requerido"),

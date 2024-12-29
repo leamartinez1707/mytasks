@@ -21,7 +21,7 @@ export class NoteController {
             await Promise.allSettled([note.save(), req.task.save()]);
             res.send('Nota creada correctamente');
         } catch (error) {
-            res.status(500).json({ message: "Error al crear la nota" });
+            res.status(500).json({ error: "Error al crear la nota" });
             return
 
         }
@@ -32,7 +32,7 @@ export class NoteController {
             const notes = await Note.find({ task: req.task.id });
             res.json(notes);
         } catch (error) {
-            res.status(500).json({ message: "Error al obtener las notas" });
+            res.status(500).json({ error: "Error al obtener las notas" });
             return
 
         }
@@ -44,11 +44,11 @@ export class NoteController {
         try {
             const note = await Note.findById(noteId);
             if (!note) {
-                res.status(404).json({ message: "Nota no encontrada" });
+                res.status(404).json({ error: "Nota no encontrada" });
                 return
             }
             if (note.createdBy.toString() !== req.user.id.toString()) {
-                res.status(404).json({ message: "Accion no valida" });
+                res.status(404).json({ error: "Accion no valida" });
                 return
             }
             req.task.notes = req.task.notes.filter(note => note.toString() !== noteId.toString())
@@ -56,7 +56,7 @@ export class NoteController {
             await Promise.allSettled([note.deleteOne(), req.task.save()]);
             res.send('Nota eliminada correctamente');
         } catch (error) {
-            res.status(500).json({ message: "Error al eliminar la nota" });
+            res.status(500).json({ error: "Error al eliminar la nota" });
             return
 
         }
