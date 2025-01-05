@@ -12,9 +12,9 @@ UpTask es una aplicación web diseñada para facilitar la gestión de proyectos,
 ## Screenshots
 
 <div align="center">
-  <img src="public/assets/desktopscreenshot.png" alt="Captura de pantalla de la web" style="max-width: 100%; width: 600px;">
-  <img src="public/assets/tabletscreenshot.png" alt="Captura de pantalla de la tableta" style="max-width: 100%; width: 300px;">
-  <img src="public/assets/phonescreenshot.png" alt="Captura de pantalla del teléfono" style="max-width: 100%; width: 200px;">
+  <img src="src/assets/desktopscreenshot.png" alt="Captura de pantalla de la web" style="max-width: 100%; width: 600px;">
+  <img src="src/assets/tabletscreenshot.png" alt="Captura de pantalla de la tableta" style="max-width: 100%; width: 300px;">
+  <img src="src/assets/phonescreenshot.png" alt="Captura de pantalla del teléfono" style="max-width: 100%; width: 200px;">
 </div>
 
 
@@ -43,6 +43,52 @@ UpTask es una aplicación web diseñada para facilitar la gestión de proyectos,
 **Frontend:** React, ReactQuery, TypeScript, Tailwind, ChakraUI, HeadlessUI, HeroIcons, Drag and Drop Kit.
 
 **Backend:** Express, TypeScript, MongoDB, JWT, Bcrypt, Nodemailer.
+
+## Clone project
+
+- Abre una terminal en tu máquina local.
+
+- Navega al directorio donde deseas clonar el proyecto.
+
+- Debes ejecutar dos comandos, uno para clonar el Frontend, y otro para el Backend
+
+```
+git clone https://github.com/leamartinez1707/mytasks-frontend.git
+
+git clone https://github.com/leamartinez1707/mytasks.git
+
+```
+
+- Navegar hacía las carpetas para instalar dependencias, debes hacer lo mismo con ambos stacks:
+
+```
+cd mytasks-frontend
+cd mytasks
+
+```
+
+Instalar dependencias:
+
+```
+npm install
+```
+
+Para ejecutar el proyecto, debes abrir dos terminales, una en la carpeta del Frontend, y otra en la carpeta del Backend, y ejecutar el siguiente comando:
+
+Modo producción
+```
+npm start 
+```
+Modo desarrollo
+```
+npm run dev
+```
+
+### En el backend puedes ejecutar
+```
+npm run dev:api
+```
+Esto sirve para aceptar solicitudes de cualquier dominio y no tener problemas de CORS en el modo de desarrollo.
 
 ## Contact
 
