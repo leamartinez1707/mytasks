@@ -12,9 +12,9 @@ UpTask es una aplicación web diseñada para facilitar la gestión de proyectos,
 ## Screenshots
 
 <div align="center">
-  <img src="src/assets/desktopscreenshot.png" alt="Captura de pantalla de la web" style="max-width: 100%; width: 600px;">
-  <img src="src/assets/tabletscreenshot.png" alt="Captura de pantalla de la tableta" style="max-width: 100%; width: 300px;">
-  <img src="src/assets/phonescreenshot.png" alt="Captura de pantalla del teléfono" style="max-width: 100%; width: 200px;">
+  <img src="server/src/assets/desktopscreenshot.png" alt="Captura de pantalla de la web" style="max-width: 100%; width: 600px;">
+  <img src="server/src/assets/tabletscreenshot.png" alt="Captura de pantalla de la tableta" style="max-width: 100%; width: 300px;">
+  <img src="server/src/assets/phonescreenshot.png" alt="Captura de pantalla del teléfono" style="max-width: 100%; width: 200px;">
 </div>
 
 
