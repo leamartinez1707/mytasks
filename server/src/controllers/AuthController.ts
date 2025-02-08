@@ -36,6 +36,7 @@ export class AuthController {
 
             res.send("Cuenta creada, revisa tu email para confirmarla");
         } catch (error) {
+            console.log(error);
             res.status(500).json({ error: "Error en el servidor" });
         }
     }

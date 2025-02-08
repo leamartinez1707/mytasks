@@ -6,15 +6,11 @@ dotenv.config();
 
 const config = () => {
     return {
-        host: process.env.SMTP_HOST,
-        port: +process.env.SMTP_PORT,
-        auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASSWORD
-        }
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true para 465, false para 587
+        service: 'gmail',
+        auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASSWORD },
     };
 }
-
-// Looking to send emails in production? Check out our Email API/SMTP product!
 export const transporter = nodemailer.createTransport(config());
-
