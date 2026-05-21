@@ -13,7 +13,7 @@ export const confirmUserEmailTemplate = (user: IEmail) => {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Confirmación de Cuenta - UpTask</title>
+<title>Confirmación de Cuenta - Taskbyte</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -75,9 +75,9 @@ export const confirmUserEmailTemplate = (user: IEmail) => {
     <tr>
       <td align="center" style="padding: 20px;">
         <div class="container">
-          <h1>UpTask</h1>
+          <h1>Taskbyte</h1>
           <p>Hola <b>${user.name}</b>,</p>
-          <p>Has creado tu cuenta en <b>UpTask</b>. Solo falta confirmar tu cuenta.</p>
+          <p>Has creado tu cuenta en <b>Taskbyte</b>. Solo falta confirmar tu cuenta.</p>
           <p>Para confirmar tu cuenta, haz clic en el siguiente enlace:</p>
           <a href="${process.env.FRONTEND_URL}/auth/confirm-account">Confirmar cuenta</a>
           <p class="code">Código de confirmación: ${user.token}</p>
@@ -101,7 +101,7 @@ export const resetPasswordEmailTemplate = (user: IEmail) => {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Recuperar contraseña - UpTask</title>
+<title>Recuperar contraseña - Taskbyte</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -163,7 +163,7 @@ export const resetPasswordEmailTemplate = (user: IEmail) => {
     <tr>
       <td align="center" style="padding: 20px;">
         <div class="container">
-          <h1>UpTask</h1>
+          <h1>Taskbyte</h1>
           <p>Hola <b>${user.name}</b>,</p>
           <p>Has solicitado reestablecer tu contraseña.</p>
           <p>Para reestablecer tu cuenta, haz clic en el siguiente enlace:</p>

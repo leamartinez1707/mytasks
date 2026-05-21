@@ -1,12 +1,17 @@
 
-# UpTask | Gestión de proyectos.
+# Taskbyte | Gestión de proyectos.
 
-UpTask es una aplicación web diseñada para facilitar la gestión de proyectos, tareas y colaboradores. Permite a los usuarios crear y organizar proyectos, asignar tareas a diferentes miembros del equipo y realizar un seguimiento del progreso de cada actividad. Desarrollada con React, TypeScript y Vite en el frontend, y utilizando Tailwind CSS para el diseño, UpTask ofrece una interfaz intuitiva y eficiente para optimizar el flujo de trabajo en equipos de cualquier tamaño.
+Taskbyte es una aplicación web diseñada para facilitar la gestión de proyectos, tareas y colaboradores. Permite a los usuarios crear y organizar proyectos, asignar tareas a diferentes miembros del equipo y realizar un seguimiento del progreso de cada actividad. Desarrollada con React, TypeScript y Vite en el frontend, y utilizando Tailwind CSS para el diseño, Taskbyte ofrece una interfaz intuitiva y eficiente para optimizar el flujo de trabajo en equipos de cualquier tamaño.
 
 
 ## Web
 
-[UpTask - Ir a la web](https://uptask-projectmanagement-phi.vercel.app/)
+[Taskbyte - Ir a la web](https://taskbyte.vercel.app/)
+
+## Repositorios
+
+- Frontend: https://github.com/leamartinez1707/mytasks-frontend
+- Backend: https://github.com/leamartinez1707/mytasks
 
 
 ## Screenshots
