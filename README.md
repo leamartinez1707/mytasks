@@ -1,107 +1,113 @@
 
 
-# Taskbyte | Gestión de proyectos
+# Taskbyte | Gestion de proyectos y tareas
 
-<p align="center">
-  <b>App full stack para gestión de proyectos, tareas y equipos</b><br/>
-  <a href="https://taskbyte.vercel.app/landing">Ver landing de la demo</a> ·
-  <a href="https://taskbyte.vercel.app/">Probar demo</a> ·
-  <a href="https://github.com/leamartinez1707/mytasks-frontend">Código frontend</a> ·
-  <a href="https://github.com/leamartinez1707/mytasks">Código backend</a>
-</p>
+Taskbyte es una app full stack para gestionar proyectos, tareas y equipos en un solo lugar.
 
-Taskbyte es una aplicación web diseñada para facilitar la gestión de proyectos, tareas y colaboradores. Permite a los usuarios crear y organizar proyectos, asignar tareas a diferentes miembros del equipo y realizar un seguimiento del progreso de cada actividad. Desarrollada con React, TypeScript y Vite en el frontend, y utilizando Tailwind CSS para el diseño, Taskbyte ofrece una interfaz intuitiva y eficiente para optimizar el flujo de trabajo en equipos de cualquier tamaño.
+- Landing: https://taskbyte.vercel.app/landing
+- Demo: https://taskbyte.vercel.app/
+- Frontend repo: https://github.com/leamartinez1707/mytasks-frontend
+- Backend repo: https://github.com/leamartinez1707/mytasks
 
+## Nota importante (cold start)
 
+El backend esta desplegado en un servidor gratuito.
+La primera peticion puede demorar entre 40 y 50 segundos.
+Si tarda en responder, espera unos segundos y vuelve a intentar.
 
----
+## Que incluye el proyecto
 
+- Gestion de proyectos (crear, editar y eliminar)
+- Tablero de tareas por estado (drag and drop)
+- Gestion de equipo por proyecto
+- Autenticacion con JWT
+- Confirmacion de cuenta y recuperacion de password por email
+- UI responsive
 
-## Screenshots
+## Stack
 
+- Frontend: React, TypeScript, Vite, Tailwind, React Query, React Hook Form
+- Backend: Node.js, Express, TypeScript, MongoDB (Mongoose), JWT, Nodemailer
 
-<div align="center">
-  <img src="client/public/assets/desktopscreenshot.png" alt="Captura escritorio" width="500" />
-  <img src="client/public/assets/tabletscreenshot.png" alt="Captura tablet" width="250" />
-  <img src="client/public/assets/phonescreenshot.png" alt="Captura móvil" width="120" />
-</div>
+## Estructura general
 
+- `mytasks` -> repo backend (API en `server/`)
+- `mytasks-frontend` -> repo frontend
 
+## Instalacion local (paso a paso)
 
-## Características principales
+1. Clonar ambos repositorios:
 
-
-- Gestión de proyectos y tareas con drag & drop
-- Asignación de colaboradores y roles
-- Notificaciones y feedback visual moderno
-- Responsive, dark mode y accesibilidad
-- Autenticación segura y recuperación de cuenta
-
-
-## Tecnologías principales
-
-
-**Frontend:** React, React Query, TypeScript, Tailwind, ChakraUI, HeadlessUI, HeroIcons, DnD Kit
-
-**Backend:** Express, TypeScript, MongoDB, JWT, Bcrypt, Nodemailer
-
-
-## ¿Cómo correr el proyecto?
-
-- Abre una terminal en tu máquina local.
-
-- Navega al directorio donde deseas clonar el proyecto.
-
-- Debes ejecutar dos comandos, uno para clonar el Frontend, y otro para el Backend
-
-```
-git clone https://github.com/leamartinez1707/mytasks-frontend.git
-
+```bash
 git clone https://github.com/leamartinez1707/mytasks.git
-
+git clone https://github.com/leamartinez1707/mytasks-frontend.git
 ```
 
-- Navegar hacía las carpetas para instalar dependencias, debes hacer lo mismo con ambos stacks:
+2. Instalar dependencias:
 
+```bash
+# Backend
+cd mytasks/server
+npm install
+
+# Frontend
+cd ../../mytasks-frontend
+npm install
 ```
+
+3. Configurar variables de entorno.
+
+Backend (`mytasks/server/.env`):
+
+```env
+PORT=3000
+DB_URL=mongodb+srv://...
+FRONTEND_URL=http://localhost:5173
+JWT_SECRET=tu_clave_secreta
+MAIL_USER=tu_email@gmail.com
+MAIL_PASSWORD=tu_password_o_app_password
+```
+
+Frontend (`mytasks-frontend/.env`):
+
+```env
+VITE_API_URL=http://localhost:3000/api
+```
+
+4. Ejecutar en desarrollo (dos terminales):
+
+```bash
+# Terminal 1 (backend)
+cd mytasks/server
+npm run dev
+
+# Terminal 2 (frontend)
 cd mytasks-frontend
-cd mytasks
-
-```
-
-Instalar dependencias:
-
-```
-npm install
-```
-
-
-Abre dos terminales, una en cada carpeta (client y server):
-
-**Frontend**
-```
-cd client
-npm install
 npm run dev
 ```
 
-**Backend**
-```
-cd server
-npm install
-npm run dev
-```
+5. Abrir en navegador:
 
-**Opcional:**
-Para desarrollo sin problemas de CORS, en el backend puedes usar:
-```
-npm run dev:api
-```
+- Frontend: http://localhost:5173
+- API base: http://localhost:3000/api
 
+## Scripts utiles
 
----
+Backend (`mytasks/server`):
+
+- `npm run dev` -> modo desarrollo
+- `npm run dev:api` -> permite pruebas de CORS en desarrollo
+- `npm run build` -> compila TypeScript
+- `npm start` -> ejecuta build en `dist`
+
+Frontend (`mytasks-frontend`):
+
+- `npm run dev` -> modo desarrollo
+- `npm run build` -> build de produccion
+- `npm run preview` -> previsualizar build
+- `npm run lint` -> lint del proyecto
 
 ## Contacto
 
-- **Email:** leandromartinez.dev@gmail.com
-- **Whatsapp:** [+59895220063](https://api.whatsapp.com/send?phone=59895220063&text=Hola%20Leandro!%20Me%20contacto%20contigo%20porque..)
+- [Email - leandromartinez.dev@gmail.com](leandromartinez.dev@gmail.com)
+- [Whatsapp - 095220063](https://api.whatsapp.com/send?phone=59895220063&text=Hola%20Leandro!%20Me%20contacto%20contigo%20porque..)
