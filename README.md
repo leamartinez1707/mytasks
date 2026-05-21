@@ -4,8 +4,8 @@
 
 Taskbyte es una app full stack para gestionar proyectos, tareas y equipos en un solo lugar.
 
-- Landing: https://taskbyte.vercel.app/landing
-- Demo: https://taskbyte.vercel.app/
+- Landing: https://taskbyte-leandromartinez.vercel.app/landing
+- Demo: https://taskbyte-leandromartinez.vercel.app/
 - Frontend repo: https://github.com/leamartinez1707/mytasks-frontend
 - Backend repo: https://github.com/leamartinez1707/mytasks
 
